@@ -34,26 +34,39 @@
 <table>
   <thead>
     <tr>
-      <th>Price</th>
-      <th>Description</th>
+      <th>Price: </th>
+      <th>Number:</th>
       <th>Name</th>
-      <th>Course</th>
-      <th colspan="3"></th>
+      <th>Contains</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @courses.each do |course| %>
       <tr>
+        <% prices = [] %>
+        <% dishes = [] %>
+        <% @dishes.each do |dish| %>
+        <% if dish.course_id == course.id %>
+        <% dishes << dish.name %>
+        <% prices << dish.price %>
+        <%end %>
+        <%end %>
+        <td><%= prices.sum %></td>
         <td><%= course.id %></td>
-        <td><%= course.image %></td>
         <td><%= course.name %></td>
+        <td><%= dishes.*", " %>
+        <td><%= image_tag  asset_url(course.image), class: "small" %><td>
+
+
+
+
+          </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-
 
 
 
