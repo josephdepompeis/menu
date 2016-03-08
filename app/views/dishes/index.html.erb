@@ -41,28 +41,30 @@
       <th colspan="4"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @courses.each do |course| %>
       <tr>
         <% prices = [] %>
         <% dishes = [] %>
+        <% dishes = [] %>
         <% @dishes.each do |dish| %>
-        <% if dish.course_id == course.id %>
-        <% dishes << dish.name %>
-        <% prices << dish.price %>
-        <%end %>
+          <% if dish.course_id == course.id %>
+          <% dishes << dish.name %>
+          <% prices << dish.price %>
+          <%end %>
         <%end %>
         <td><%= prices.sum %></td>
         <td><%= course.id %></td>
         <td><%= course.name %></td>
-        <td><%= dishes.*", " %>
-        <td><%= image_tag  asset_url(course.image), class: "small" %><td>
+        <td>
+          <% @dishes.each do |dish| %>
+            <% if dish.course_id == course.id %>
 
-
-
-
-          </td>
+              <%= link_to dish.name, edit_dish_path(dish) %>
+            <%end %>
+        <%end %>
+        </td>
+        <td><%= image_tag asset_url(course.image), class: "small" %></td>
       </tr>
     <% end %>
   </tbody>
