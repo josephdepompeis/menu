@@ -16,8 +16,6 @@ class DishesController < ApplicationController
 
   # GET /dishes/new
   def new
-    course_number = params[:course_id]
-    x = Course.find(course_number)
     @dish = Dish.new
   end
 
@@ -29,7 +27,6 @@ class DishesController < ApplicationController
   # POST /dishes.json
   def create
     @dish = Dish.new(dish_params)
-
     respond_to do |format|
       if @dish.save
         format.html { redirect_to dishes_url, notice: "#{@dish.name.capitalize} was successfully created." }

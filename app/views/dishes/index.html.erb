@@ -1,44 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Dishes</h1>
+<h1>Menu Of Tiago</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Name</th>
-      <th>Course</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @dishes.each do |dish| %>
-      <tr>
-        <td><%= dish.price %></td>
-        <td><%= dish.description %></td>
-        <td><%= dish.name %></td>
-        <td><%= dish.course_id %></td>
-        <td><%= link_to 'Show', dish %></td>
-        <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
-        <td><%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-
-
-<table>
-  <thead>
-    <tr>
+      <th class="col-6"></th>
       <th>Price: </th>
       <th>Number:</th>
       <th>Name</th>
       <th>Contains</th>
-      <th colspan="4"></th>
+      <th>Customize</th>
+      <th colspan="6"></th>
     </tr>
   </thead>
   <tbody>
@@ -53,31 +26,20 @@
           <% prices << dish.price %>
           <%end %>
         <%end %>
+        <td class="col-6"><%= image_tag asset_url(course.image), class: "small" %></td>
         <td><%= prices.sum %></td>
         <td><%= course.id %></td>
         <td><%= course.name %></td>
         <td>
           <% @dishes.each do |dish| %>
             <% if dish.course_id == course.id %>
-
               <%= link_to dish.name, edit_dish_path(dish) %>
             <%end %>
         <%end %>
         </td>
         <td><%= link_to 'Add New Dish', new_dish_path(course_id: course) %>
-        <td><%= image_tag asset_url(course.image), class: "small" %></td>
       </tr>
 
     <% end %>
   </tbody>
 </table>
-
-
-
-
-
-
-
-<br>
-
-<%= link_to 'New Dish', new_dish_path %>
