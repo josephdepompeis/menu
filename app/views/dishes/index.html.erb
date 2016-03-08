@@ -64,8 +64,10 @@
             <%end %>
         <%end %>
         </td>
+        <td><%= link_to 'Add New Dish', new_dish_path(course_id: course) %>
         <td><%= image_tag asset_url(course.image), class: "small" %></td>
       </tr>
+
     <% end %>
   </tbody>
 </table>

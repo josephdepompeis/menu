@@ -6,7 +6,7 @@ class DishesController < ApplicationController
   def index
     @dishes = Dish.all
     @courses = Course.all
-    # @dishes_per_course = 
+    # @dishes_per_course =
   end
 
   # GET /dishes/1
@@ -16,6 +16,8 @@ class DishesController < ApplicationController
 
   # GET /dishes/new
   def new
+    course_number = params[:course_id]
+    x = Course.find(course_number)
     @dish = Dish.new
   end
 
@@ -30,11 +32,9 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.save
-        format.html { redirect_to @dish, notice: 'Dish was successfully created.' }
-        format.json { render :show, status: :created, location: @dish }
+        format.html { redirect_to dishes_url, notice: "#{@dish.name.capitalize} was successfully created." }
       else
         format.html { render :new }
-        format.json { render json: @dish.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,11 +44,9 @@ class DishesController < ApplicationController
   def update
     respond_to do |format|
       if @dish.update(dish_params)
-        format.html { redirect_to @dish, notice: 'Dish was successfully updated.' }
-        format.json { render :show, status: :ok, location: @dish }
+        format.html { redirect_to dishes_url, notice: "#{@dish.name.capitalize} was successfully updated." }
       else
         format.html { render :edit }
-        format.json { render json: @dish.errors, status: :unprocessable_entity }
       end
     end
   end
