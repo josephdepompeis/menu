@@ -33,7 +33,7 @@
         <td>
           <% @dishes.each do |dish| %>
             <% if dish.course_id == course.id %>
-              <%= link_to dish.name, edit_dish_path(dish) %>
+              <%= link_to dish.name, edit_dish_path(dish, course_id: course) %>
             <%end %>
         <%end %>
         </td>
